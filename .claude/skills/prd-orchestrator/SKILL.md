@@ -202,7 +202,6 @@ Step 1 で収集したドメイン知識（OST構造・エビデンス・known_i
   - ヒアリング回答（構造化済み）
   - リサーチサマリー
   - エビデンス情報（根拠の種類・内容・画像パス）
-  - リサーチ補足根拠（supplementary_evidence）— research-analyst が発見した補足データ
 - 受け取るもの:
   - PRD本体（outputs/{機能名}_{YYYY-MM-DD}.md）
   - 品質チェック結果

@@ -59,15 +59,8 @@ result:
   feature_context: "{機能コンテキスト要約}"
   ost_structure:
     desired_outcome: "{期待成果}"
-    opportunities:
-      - opportunity: "{機会}"
-        why: "{理由}"
-        solutions: ["{ソリューション}"]
+    opportunities: ["{機会}"]
     high_uncertainty_items: ["{不確実性の高いソリューション}"]
-  evidence_items:
-    - issue: "{課題}"
-      evidence_type: "data|image|voice|unconfirmed"
-      content: "{根拠内容/URL/ファイルパス}"
   unanswered_questions: ["{未回答の質問}"]
 ```
 
@@ -80,7 +73,6 @@ input:
   feature_name: "{機能名}"
   feature_summary: "{機能概要}"
   domain_summary: "{domain-collectorからのサマリー}"
-  evidence_items: [...]  # domain-collector が収集したエビデンス（補足対象の特定用）
   hypotheses: ["{ヒアリングで得た仮説}"]
   knowledge_paths:
     - "knowledge/{product}/_product.yaml"  # 競合情報参照用
@@ -97,11 +89,6 @@ result:
   competitor_summary: "{競合分析サマリー}"
   market_summary: "{市場動向サマリー}"
   differentiation_opportunities: ["{差別化機会}"]
-  supplementary_evidence:
-    - issue: "{対応するペイン・課題}"
-      evidence_type: "data|report|case_study"
-      content: "{根拠内容}"
-      source: "{出典URL/レポート名}"
   updated_files: ["{更新ファイルパス}"]
 ```
 
@@ -126,7 +113,6 @@ input:
     competitors: "{競合サマリー}"
     market: "{市場サマリー}"
     differentiation: [...]
-    supplementary_evidence: [...]  # research-analyst が発見した補足根拠
   knowledge_paths:
     - "knowledge/{product}/_product.yaml"
     - "knowledge/{product}/{feature}/_feature.yaml"
@@ -173,12 +159,9 @@ Comprehensive 判定時、要件が大きすぎる場合は再帰的に分解:
 ## エラーハンドリング
 
 ### サブエージェントがタイムアウトした場合
-- 部分的な結果があれば活用する。判定基準は prd-orchestrator の Gate 条件に準拠:
-  - **research-analyst:** competitor_summary が存在すればPRD生成に進行可能（market_summary は空でも許容）
-  - **domain-collector:** domain_summary が存在すれば次ステップに進行可能
-  - **prd-writer:** PRDファイルが出力されていれば品質チェック結果に関わらず提示可能
+- 部分的な結果があれば活用
 - 不足分を Orchestrator が補完
-- ユーザーに状況を報告（どの情報が取得できなかったかを明示）
+- ユーザーに状況を報告
 
 ### サブエージェントの出力が不十分な場合
 - 不足項目を特定
@@ -220,10 +203,6 @@ PRDフローにおけるHITLポイント:
 - **ヒアリング応答量:** domain-collector または Orchestrator のヒアリング応答が合計8回を超えた
 - **ターン消費率:** サブエージェントの turn 消費が maxTurns の 70% を超えた（domain-collector: 11/15, research-analyst: 14/20, prd-writer: 18/25）
 - **Knowledgeサイズ:** 単一 _feature.yaml が 200行を超えた → knowledge-guard の FILE_SIZE チェックをトリガー
-
-#### 分割提案の方式
-- 分割トリガーに該当した時点で、**システム側から能動的に**「ここまでの内容を保存して次回に続けますか？」とユーザーに提案する
-- ユーザーの「ここまでで止めて」等の明示的な要求を待たない
 
 #### 分割時のプロトコル
 1. ユーザーに「ここまでの内容を保存して次回に続けますか？」と確認
