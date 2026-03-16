@@ -125,9 +125,13 @@ value_proposition:
       current_solution: "{現在の解決策}"
       pain_points:
         - pain: "{Pain1}"
-          evidence: ["{根拠1}", "{根拠2}"]
+          evidence:
+            - content: "{根拠内容}"
+              evidence_type: "data|image|voice|report|case_study"
+              source: "{出典（該当時）}"
+              tag: ""  # [リサーチ補足] など（該当時）
         - pain: "{Pain2}"
-          evidence: []  # 根拠なしの場合
+          evidence: []  # 根拠なしの場合は [仮説段階] タグを付与
     how: "{ソリューション概要}"
     what_after:
       benefits: ["{Benefit1}", "{Benefit2}"]

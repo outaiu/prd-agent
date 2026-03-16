@@ -23,9 +23,9 @@ PRD作成フローを開始します。
         2. AskUserQuestion でトークンを入力してもらう（header: "NotionトークンとページURLの入力"）
            - Notionトークン（"secret_..." から始まる文字列）
            - PRD保存先NotionページのURL
-        3. 入力されたトークンを使って ~/.claude/settings.json の mcpServers に
+        3. 入力されたトークンを使って プロジェクトルートの .claude/settings.json の mcpServers に
            Notion MCPサーバー設定を自動で追加・保存する:
-           - ~/.claude/settings.json を読み込む（存在しない場合は空のJSONオブジェクトから開始）
+           - .claude/settings.json を読み込む（存在しない場合は空のJSONオブジェクトから開始）
            - 既存の内容にマージして mcpServers.notion エントリを追加:
              {
                "mcpServers": {
@@ -46,7 +46,7 @@ PRD作成フローを開始します。
 2. ユーザーの入力内容を .claude/skills/prd-orchestrator/SKILL.md の深度判定ロジックで評価してください。
 
 3. 判定結果に応じて:
-   - Minimal: AI DLC案内テキストを出力して終了
+   - Minimal: AI DLC案内テキストを出力して終了（prd-orchestrator/SKILL.md の Minimal セクション参照）
    - Standard: PRD作成を推奨し、ユーザーの同意を確認
    - Comprehensive: PRD作成が必要であることを伝え、ユーザーの同意を確認
 

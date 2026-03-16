@@ -53,13 +53,14 @@ skills:
 - スキップしない場合:
   - AskUserQuestion tool を使用してヒアリングを実施
   - `_product.yaml` の空欄項目のみを質問
-  - 既存データがある項目は preview フィールドで前回の回答を表示し、確認パターン（そのまま/一部修正/大幅変更/スキップ）で質問
+  - 既存データがある項目は domain-interviewer/SKILL.md「既存データ確認パターン」に従い確認パターンで質問
   - Call A-1（3問）→ Call A-2（4問）→ 条件付き Call A-2b（1問）の順で実施
 
 ### Step 3: 機能レベルヒアリング（Phase B）
 - AskUserQuestion tool を使用してヒアリングを実施
 - 対象機能のフォルダ・ファイルがなければ**新規作成を提案**（ユーザー許諾必須）
 - Call B-1（3問）→ 条件付き Call B-1b（3問: 深刻度＋エビデンス）→ Call B-2（3問）の順で実施
+- **重要: Call B-1b（F3b, F3c, F3d）は根拠関連の質問のため、Pre-fillによる自動スキップの対象外。** 既存データがある場合でも必ず確認パターン（そのまま/一部修正/大幅変更/スキップ）で提示する（domain-interviewer/SKILL.md「推定の制約」参照）
 - エビデンスが提供された場合、`knowledge/{product}/{feature}/evidence/` に画像ファイルを配置（ユーザー許諾必須）
 - _feature.yaml の known_issues.evidence を構造化リスト形式で保存
 
@@ -98,7 +99,8 @@ skills:
 - _feature.yaml の evidence フィールドは構造化リスト形式:
   ```yaml
   evidence:
-    - type: "data|image|url|text|unconfirmed"
+    - issue: "{対応する課題}"
+      evidence_type: "data|image|voice|unconfirmed"
       content: "{内容/パス/URL}"
       description: "{説明}"
   ```
@@ -107,7 +109,7 @@ skills:
 - AskUserQuestion tool を使用して構造化された選択式UIでヒアリングする
 - 1回の呼び出しで最大4問、各問最大4選択肢
 - Other は AskUserQuestion が自動追加するため明示不要
-- 既存データがある項目は preview フィールドで前回の回答を表示し、確認パターンで質問
+- 既存データがある項目は domain-interviewer/SKILL.md「既存データ確認パターン」に従い確認パターンで質問
 - ユーザーが「わからない」「後で」と回答した場合は [未回答] としてマーク
 
 ## 出力
