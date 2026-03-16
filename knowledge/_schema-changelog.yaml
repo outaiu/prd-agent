@@ -1,0 +1,64 @@
+# Knowledge構造の変更履歴
+# エージェントがフォルダ名・ファイル構造・YAMLスキーマを変更する際、ここに記録する
+
+changelog:
+  - date: "2026-03-13"
+    change: "knowledge/lancers/_product.yaml を公知情報ベースで初期補完"
+    reason: >
+      「ランサーからの提案品質向上」PRD対応のため、ランサーズのビジネスモデル・ステークホルダー・
+      競合・ドメイン用語を公知情報をもとに記入。[要確認]タグで未確認項目を明示。
+    approved_by: "domain-collector-agent (auto)"
+    files_changed:
+      - "knowledge/lancers/_product.yaml"
+
+  - date: "2026-03-13"
+    change: "knowledge/lancers/proposal/feature.yaml を新規作成"
+    reason: >
+      「提案機能」フォルダが存在しなかったため新規作成。
+      現状のユーザーフロー・提案品質の定義・既知課題・競合実装・改善仮説を公知情報ベースで記入。
+    approved_by: "domain-collector-agent (auto, new feature folder)"
+    files_changed:
+      - "knowledge/lancers/proposal/feature.yaml"
+
+  - date: "2026-03-15"
+    change: "knowledge/lancers/_index.yaml を新規作成"
+    reason: >
+      knowledge-guardスキル導入に伴い、プロダクト配下の機能一覧を管理するインデックスファイルを作成。
+      既存の2機能（proposal, external-achievement）をバックフィル。
+    approved_by: "knowledge-guard-skill (initial setup)"
+    files_changed:
+      - "knowledge/lancers/_index.yaml"
+
+  - date: "2026-03-15"
+    change: "_product.yaml にリポジトリ由来の基礎ドメイン情報を追記、_index.yaml に feature_catalog を追加"
+    reason: >
+      lancers_cakephpリポジトリを参照し、ドメインのグループ分けの型を作成。
+      _product.yaml: work_types（6種）、payment_flow、domain_terms追加、technology更新。コード詳細は含めず基礎説明のみ。
+      _index.yaml: 13の主要機能領域をfeature_catalogとして登録（名前とスコープのみ）。
+      feature フォルダはPRD作成時に必要に応じて作成する方針。
+    approved_by: "ユーザー許諾済み"
+    files_changed:
+      - "knowledge/lancers/_product.yaml"
+      - "knowledge/lancers/_index.yaml"
+
+  - date: "2026-03-15"
+    change: "knowledge/lancers/external-achievement/feature.yaml を新規作成"
+    reason: >
+      knowledge-guardのFEATURE_COMPLETENESSチェックにより、prd-history/が存在するのに
+      feature.yamlがない状態を検出。prd-history/2026-03-14.yamlの情報から骨格を生成。
+    approved_by: "ユーザー許諾済み"
+    files_changed:
+      - "knowledge/lancers/external-achievement/feature.yaml"
+
+  - date: "2026-03-15"
+    change: "knowledge/lancers/proposal-selection/ フォルダを新規作成、feature.yaml を追加"
+    reason: >
+      「公開プロジェクト・AIによる提案一括選定機能」PRD対応のため新規フォルダを作成。
+      既存の proposal/feature.yaml はランサー側の提案送信フロー中心であり、
+      クライアント側のAI選定機能は独立した機能領域として管理する。
+      ドメイン知識収集・OST構造化を実施し、feature.yaml に記録。
+      _index.yaml にも新機能エントリを追加。
+    approved_by: "domain-collector-agent (new feature folder, PRD対応)"
+    files_changed:
+      - "knowledge/lancers/proposal-selection/feature.yaml"
+      - "knowledge/lancers/_index.yaml"

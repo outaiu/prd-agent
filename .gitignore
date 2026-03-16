@@ -1,0 +1,21 @@
+# 生成されたPRD（各自ローカルで管理）
+outputs/
+
+# 個人設定・ローカル許可リスト
+.claude/settings.local.json
+
+# サブエージェントのメモリ（個人ごとに蓄積）
+.claude/agent-memory/
+
+# 機能別ドメイン知識・PRD履歴（各自のヒアリングで蓄積）
+knowledge/lancers/*/prd-history/
+
+# OS
+.DS_Store
+
+# 環境変数
+.env
+.env.local
+
+# 構築用プロンプト（ローカル参考資料）
+参考資料

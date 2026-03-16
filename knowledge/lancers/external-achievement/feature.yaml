@@ -1,0 +1,73 @@
+# ランサーズ 外部実績表示機能 ドメイン知識
+# prd-history/2026-03-14.yaml から骨格を生成。[要確認] はヒアリングで補完が必要な項目
+
+feature:
+  name: "外部実績表示機能"
+  category: "プロフィール・信頼性"
+  description: >
+    ランサーがランサーズ外で得た実績（他プラットフォーム・直接取引等）を申請・登録し、
+    プロフィール上に表示できる機能。クライアントがランサーの実力を判断する材料となる。
+
+current_user_flow:
+  lancer_side:
+    steps:
+      - step: 1
+        action: "外部実績申請フォームにアクセスする"
+      - step: 2
+        action: "実績情報を入力する（案件名・期間・内容・証拠等）"
+      - step: 3
+        action: "申請を送信する"
+      - step: 4
+        action: "運営の審査結果を待つ"
+      - step: 5
+        action: "承認されるとプロフィールに外部実績が表示される"
+    constraints:
+      - "審査が必要（自動承認ではない）"
+      - "タスク方式の実績は対象外"
+      - "証拠となる書類・URLの添付が必要 [要確認: 詳細要件]"
+  client_side:
+    steps:
+      - step: 1
+        action: "ランサーのプロフィールで外部実績を閲覧する"
+    notes: "外部実績の有無がランサー選定の判断材料になる"
+
+known_issues:
+  lancer_side:
+    - issue: "申請ルールが読み取れず、ルール違反申請をしてしまう"
+      evidence: "[要確認: 定量データ]"
+      hypothesis: "フォームUIでの説明が不足している"
+    - issue: "申請フォームの離脱率が高い"
+      evidence: "[要確認]"
+      hypothesis: "入力項目の説明不足・バリデーション不足により途中で諦める"
+    - issue: "審査通過率が低い"
+      evidence: "[要確認]"
+      hypothesis: "申請要件の理解不足によるルール違反申請が多い"
+  platform_side:
+    - issue: "審査コストが高い"
+      evidence: "[要確認]"
+      hypothesis: "ルール違反申請が多く、差し戻し・再審査が発生している"
+
+related_features:
+  - name: "プロフィール・ポートフォリオ機能"
+    relationship: "外部実績はプロフィール上に表示され、ランサーの信頼性を補完する"
+  - name: "提案機能"
+    relationship: "外部実績が充実しているランサーはクライアントからの採用率が高い可能性"
+  - name: "認定ランサー制度"
+    relationship: "外部実績も認定基準の一部となりうる [要確認]"
+
+improvement_hypotheses:
+  - category: "申請フォームUI改善"
+    ideas:
+      - "各フィールドへのインライン説明表示"
+      - "申請前確認パネル（対象外条件・必要書類リスト）"
+      - "インラインバリデーション（Reward Early, Punish Late原則）"
+      - "具体例付きエラーメッセージ"
+  - category: "審査プロセス改善"
+    ideas:
+      - "申請進捗表示（Phase2）"
+      - "不合格理由の具体化（Phase2）"
+
+past_decisions:
+  - "[要確認: 過去に外部実績機能で実施した施策]"
+
+updated_at: "2026-03-15"
