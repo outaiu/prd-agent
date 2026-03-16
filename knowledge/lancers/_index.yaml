@@ -1,22 +1,7 @@
 product: "ランサーズ"
 
 # feature フォルダが存在する機能（詳細なドメイン知識あり）
-features:
-  - name: "提案機能"
-    path: "proposal/"
-    has_feature_yaml: true
-    has_prd_history: true
-    last_updated: "2026-03-13"
-  - name: "外部実績表示"
-    path: "external-achievement/"
-    has_feature_yaml: true
-    has_prd_history: false
-    last_updated: "2026-03-15"
-  - name: "公開プロジェクト・AIによる提案一括選定機能"
-    path: "proposal-selection/"
-    has_feature_yaml: true
-    has_prd_history: false
-    last_updated: "2026-03-15"
+features: []
 
 # リポジトリから特定した主要機能領域（feature フォルダはPRD作成時に必要に応じて作成）
 feature_catalog:
@@ -24,7 +9,6 @@ feature_catalog:
     scope: "仕事の作成・掲載・検索・募集管理"
   - name: "提案"
     scope: "提案投稿・自動提案・テンプレート・採用・辞退"
-    feature_path: "proposal/"
   - name: "プロジェクト契約"
     scope: "採用後の契約・マイルストーン・納品・検収"
   - name: "時給制"
@@ -48,5 +32,4 @@ feature_catalog:
   - name: "認証・本人確認"
     scope: "OAuth・KYC・身分証明"
 
-updated_at: "2026-03-15"
-# 最終更新: proposal-selection フォルダを新規追加（AIによる提案一括選定機能）
+updated_at: "2026-03-16"
